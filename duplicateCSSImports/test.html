@@ -1,0 +1,28 @@
+<body>
+    CSS test
+    <link rel="stylesheet" href="./lotsaImports.css" />
+    <link rel="stylesheet" href="./lotsaImports.css" />
+    <link rel="stylesheet" href="./lotsaImports2.css" />
+    <div id="blue">Blue</div>
+    <div id="red">Red</div>
+    <style>
+        @import url("2a.css");
+    </style>
+    <script>
+        function newStylesheet() {
+        let s = new CSSStyleSheet();
+        s.replace(`
+            @import url("./lotsaImports.css");
+            
+            div#red {
+                background-color: red;
+                font-weight: bold;
+            }
+            
+            `).then(() => {
+                document.adoptedStyleSheets = [...document.adoptedStyleSheets, s];
+            });
+        }
+    </script>
+    <input type="button" value="add new constructed stylesheet" onclick="newStylesheet()"/>
+</body>
